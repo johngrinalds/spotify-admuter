@@ -7,6 +7,10 @@ import spotipy.util as util
 from pynput.keyboard import Key, Controller
 keyboard = Controller()
 import time
+import webbrowser
+import os
+
+#webbrowser.open("https://open.spotify.com/", new=1, autoraise=True)
 
 scope = 'user-read-currently-playing'
 
@@ -75,7 +79,6 @@ state = 0 #not playing ad
 token = get_token()
 
 
-
 while True:
     try:
         song_status = get_playing()
@@ -84,14 +87,19 @@ while True:
         if (song_status == 'ad')&(state == 0):
             state = 1
             mute_toggle()
+            os.system('clear')
+            print("Spotify Playing\nMuting in progress.")
         if (song_status != 'ad')&(state == 1):
             state = 0
             mute_toggle()
+            os.system('clear')
+            print("Spotify Playing\nMuting in progress.")
+
 #    except:
     except BaseException as error:
+        os.system('clear')
         print('An exception occurred: {}'.format(error))
         print("Can't connect to Spotify...")
         token = get_token()
     time.sleep(0.5)
-
 
