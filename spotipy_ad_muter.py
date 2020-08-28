@@ -9,31 +9,28 @@ keyboard = Controller()
 import time
 import webbrowser
 import os
+import json
 
 #webbrowser.open("https://open.spotify.com/", new=1, autoraise=True)
 
 scope = 'user-read-currently-playing'
 
-
-'''
-if len(sys.argv) > 1:
-    username = sys.argv[1]
-else:
-    print("Usage: %s username" % (sys.argv[0],))
-    sys.exit()
-'''
-
 username = "-f"
+
+
+print(os.getcwd())
+
+# Load your credentials here
+with open("creds.json") as f:
+  creds = json.load(f)
 
 def get_token():
     return(util.prompt_for_user_token(username,
                            scope,
-                           client_id='84d16a6d28d744598e19c4e1bb4923d2',
-                           client_secret='73f0b495c93d4539a43ca771674f1dea',
+                           client_id=creds['id'],
+                           client_secret=creds['secret'],
                            redirect_uri='http://localhost')
            )
-
-
 
 #Get Spotify Current Playing Song
 
@@ -46,25 +43,7 @@ def get_playing():
         print("Can't get token for", username)
     return playing_type
 
-
-def volume_low():
-    if token:
-        sp = spotipy.Spotify(auth=token)
-        sp.volume(volume_percent = 1)
-    else:
-        print("Can't get token for", username)
-
-
-def volume_low():
-    if token:
-        sp = spotipy.Spotify(auth=token)
-        sp.volume(volume_percent = 50)
-    else:
-        print("Can't get token for", username)
-        
-
-
-#These keystrokes open WMC, mute the volume, and close the window
+#These keystrokes are for the keyboard-based volume mute key
 
 def mute_toggle():
     keyboard.press(Key.media_volume_mute)
@@ -95,7 +74,6 @@ while True:
             os.system('clear')
             print("Spotify Playing\nMuting in progress.")
 
-#    except:
     except BaseException as error:
         os.system('clear')
         print('An exception occurred: {}'.format(error))
