@@ -1,7 +1,7 @@
 # Spotify Ad Muter
 This project uses the Spotipy library to connect to Spotify, and then mutes the computer during ad cycles.
 ## Intialization
-1. Create a `creds.json` file the client id and secret you receive from your Spotify developer account.
+1. Create a `creds.json` file with the client id and secret you receive from your Spotify developer account.
 2. Modify the path of this `creds.json` file to be relative to your machine.
 3. The first time you run the `spotipy_ad_muter.py` script, it will open a URL. Copy this URL into the terminal when promopted.
 4. You may need to restart the program, and then you should be good.
