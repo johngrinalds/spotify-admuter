@@ -17,11 +17,8 @@ scope = 'user-read-currently-playing'
 
 username = "-f"
 
-
-print(os.getcwd())
-
 # Load your credentials here
-with open("creds.json") as f:
+with open("/Users/johngrinalds/Documents/GitHub/spotify-admuter/creds.json") as f:
   creds = json.load(f)
 
 def get_token():
