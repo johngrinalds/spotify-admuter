@@ -5,6 +5,8 @@ conda activate standard
 
 open https://open.spotify.com/
 
+open https://www.google.com/search?q=timer
+
 python /Users/johngrinalds/Documents/GitHub/spotify-admuter/spotipy_ad_muter.py
 
  
